@@ -1,0 +1,31 @@
+**************** Notes ****************
+import pytest
+from selenium.webdriver import Chrome
+from selenium.webdriver.common.keys import Keys
+
+Q) Why do we need these imports?
+1. pytest will be used for fixtures
+2. Chrome provides ChromeDriver binding
+3. Key contains special keystrokes for browser interactions
+
+- As a best practice, each test must have its own webdriver instance for clean setup and cleanup and ease
+with parallel execution.
+- If the automation attempts to access new elements before they exist, then WebDriver
+will raise a NoSuchElementException.
+- Fixtures in pytest are 'generators' i.e it is a function that behaves like an iterator hence the 'yield' statement
+is used to return anything from them.
+- Before writing automation code, it’s always best to write the test procedure in plain language.
+Writing the procedure forces us to think first and foremost about the behavior under test.
+- The Page Object Pattern (a.k.a the Page Object “Model”) is a design pattern that abstracts web page interactions for
+enhanced readability and reusability.Pages are represented as classes with locator attributes and interaction methods.
+Instead of making raw WebDriver calls, tests call page object methods instead.
+Page Object Pattern is arguably the most common pattern used for web UI test automation.
+- POM follows the good practice of separation of concerns between web interactions and test cases.
+
+To generate HTML results: python -m pytest --html=report.html .\tests\
+
+To execute tests in parallel:
+- Use pytest-xdist plugin
+- Command: pytest -n <number of threads>
+
+****************************************
